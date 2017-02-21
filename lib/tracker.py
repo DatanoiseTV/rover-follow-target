@@ -2,9 +2,9 @@
 
 import cv2
 import numpy as np
-from marker import Marker
+from lib.marker import Marker
 
-SQUARE_PX = 60
+SQUARE_PX = 100
 WIDTH = SQUARE_PX * 5
 HEIGHT = SQUARE_PX * 5
 
@@ -78,8 +78,7 @@ def find_markers(img):
     #blur = cv2.medianBlur(gray, 5)
     blur = cv2.GaussianBlur(gray, (3, 3), 0)
     __, thresh = cv2.threshold(blur, 100, 255, cv2.THRESH_BINARY)
-    contours, __ = cv2.findContours(thresh.copy(), cv2.RETR_TREE,
-                                    cv2.CHAIN_APPROX_SIMPLE)
+    __, contours, __= cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     markers = dict()
 
